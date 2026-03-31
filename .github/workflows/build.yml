@@ -22,10 +22,17 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Accept licenses & install SDK
+      - name: Install SDK platforms
         run: |
           yes | sdkmanager --licenses || true
           sdkmanager "platforms;android-33" "build-tools;33.0.0" "platform-tools"
+
+      - name: Download Xposed API jar
+        run: |
+          mkdir -p app/libs
+          curl -fsSL \
+            "https://github.com/rovo89/XposedBridge/releases/download/art/XposedBridgeApi-54.jar" \
+            -o app/libs/XposedBridgeApi.jar
 
       - name: Download gradle-wrapper.jar
         run: |
