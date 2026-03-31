@@ -112,7 +112,7 @@ public class HookMain implements IXposedHookLoadPackage {
         try {
             return Bitmap.createBitmap(source, 0, 0,
                 source.getWidth(), source.getHeight(), matrix, true);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log("[VCAM] applyVideoTransform error: " + e.toString());
             return source;
         }
@@ -208,12 +208,12 @@ public class HookMain implements IXposedHookLoadPackage {
                             mhight = size.height;
                             XposedBridge.log("[VCAM] C1 setPreviewCallback: "
                                 + mwidth + "x" + mhight);
-                        } catch (Exception e) {
+                        } catch (Throwable e) {
                             XposedBridge.log("[VCAM] setPreviewCallback err: " + e);
                         }
                     }
                 });
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log("[VCAM] hook setPreviewCallback fail: " + e);
         }
 
@@ -227,7 +227,7 @@ public class HookMain implements IXposedHookLoadPackage {
                         XposedBridge.log("[VCAM] C1 startPreview hooked");
                     }
                 });
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log("[VCAM] hook startPreview fail: " + e);
         }
     }
@@ -248,7 +248,7 @@ public class HookMain implements IXposedHookLoadPackage {
                         XposedBridge.log("[VCAM] Camera2 openCamera hooked");
                     }
                 });
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log("[VCAM] Camera2 hook fail: " + e);
         }
     }
@@ -267,7 +267,7 @@ public class HookMain implements IXposedHookLoadPackage {
             if (param.args != null && param.args.length > 0) {
                 param.args[0] = yuv;
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log("[VCAM] process_a_shot_YUV err: " + e);
         }
     }
@@ -292,7 +292,7 @@ public class HookMain implements IXposedHookLoadPackage {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             param.args[idx] = baos.toByteArray();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log("[VCAM] process_a_shot_jpeg err: " + e);
         }
     }
