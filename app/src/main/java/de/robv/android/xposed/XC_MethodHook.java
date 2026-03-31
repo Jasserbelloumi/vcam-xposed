@@ -6,7 +6,7 @@ public abstract class XC_MethodHook {
     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {}
     protected void afterHookedMethod(MethodHookParam param) throws Throwable {}
 
-    public class MethodHookParam {
+    public static class MethodHookParam {
         public Member method;
         public Object thisObject;
         public Object[] args;
@@ -16,7 +16,8 @@ public abstract class XC_MethodHook {
         public Object getResult() { return result; }
         public void setResult(Object result) { this.result = result; }
         public Throwable getThrowable() { return throwable; }
-        public void setThrowable(Throwable throwable) { this.throwable = throwable; }
+        public void setThrowable(Throwable t) { this.throwable = t; }
         public boolean hasThrowable() { return throwable != null; }
+        public void returnEarly() {}
     }
 }
